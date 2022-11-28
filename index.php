@@ -41,17 +41,20 @@
         ],
 
     ];
-
-    if(isset($_GET['parking']) && !empty($_GET['parking'])){
-        //filtrare $ comics
-   
-     //filtraggio 
+    
+    if((isset($_GET['parking']) && !empty($_GET['parking'])) && (isset($_GET['vote']) && !empty($_GET['vote']))){
+        $vote = $_GET ["vote"];
+var_dump($_GET['vote']);
      $temp=[];
+     $voted=[];
      // prendo il valore 
       foreach($hotels as $item){
         $park=$item['parking']? 'si':'no';
-        if($park==$_GET['parking']){
+
+        if($park==$_GET['parking'] && $vote <= $_GET["vote"]){
+      $voted[]=$item;      
     $temp[]=$item;
+
         }
      }
      $hotels= $temp;
@@ -85,15 +88,23 @@
 
     <form action="index.php" method="GET">
         <!-- PRENDO IL VALORE CHE MI SERVIRA DOPO IN NAME -->
-        <h2>parking ?</h2>
-        <select class="form-control form-control w-75" id="type" name="parking">
+        <h2>trova l'hotel</h2>
+        <select class=" w-75" id="type" name="parking">
 
             <option value="" selected>Segli</option>
             <option value="si">parking</option>
             <option value="no">no parking</option>
 
         </select>
-        <button type="submit">ciao</button>
+        <select name="vote" id="vote">
+            <option value="" selected>scegli </option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <button type="submit">seach</button>
 
     </form>
     <table class='table'>
