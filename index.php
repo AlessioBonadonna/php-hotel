@@ -2,67 +2,70 @@
 
 
 
-    $hotels = [
+$hotels = [
 
-        [
-            'name' => 'Hotel Belvedere',
-            'description' => 'Hotel Belvedere Descrizione',
-            'parking' => true,
-            'vote' => 4,
-            'distance_to_center' => 10.4
-        ],
-        [
-            'name' => 'Hotel Futuro',
-            'description' => 'Hotel Futuro Descrizione',
-            'parking' => true,
-            'vote' => 2,
-            'distance_to_center' => 2
-        ],
-        [
-            'name' => 'Hotel Rivamare',
-            'description' => 'Hotel Rivamare Descrizione',
-            'parking' => false,
-            'vote' => 1,
-            'distance_to_center' => 1
-        ],
-        [
-            'name' => 'Hotel Bellavista',
-            'description' => 'Hotel Bellavista Descrizione',
-            'parking' => false,
-            'vote' => 5,
-            'distance_to_center' => 5.5
-        ],
-        [
-            'name' => 'Hotel Milano',
-            'description' => 'Hotel Milano Descrizione',
-            'parking' => true,
-            'vote' => 2,
-            'distance_to_center' => 50
-        ],
+    [
+        'name' => 'Hotel Belvedere',
+        'description' => 'Hotel Belvedere Descrizione',
+        'parking' => true,
+        'vote' => 4,
+        'distance_to_center' => 10.4
+    ],
+    [
+        'name' => 'Hotel Futuro',
+        'description' => 'Hotel Futuro Descrizione',
+        'parking' => true,
+        'vote' => 2,
+        'distance_to_center' => 2
+    ],
+    [
+        'name' => 'Hotel Rivamare',
+        'description' => 'Hotel Rivamare Descrizione',
+        'parking' => false,
+        'vote' => 1,
+        'distance_to_center' => 1
+    ],
+    [
+        'name' => 'Hotel Bellavista',
+        'description' => 'Hotel Bellavista Descrizione',
+        'parking' => false,
+        'vote' => 5,
+        'distance_to_center' => 5.5
+    ],
+    [
+        'name' => 'Hotel Milano',
+        'description' => 'Hotel Milano Descrizione',
+        'parking' => true,
+        'vote' => 2,
+        'distance_to_center' => 50
+    ],
 
-    ];
-    
-    if((isset($_GET['parking']) && !empty($_GET['parking'])) && (isset($_GET['vote']) && !empty($_GET['vote']))){
-        $vote = $_GET ["vote"];
-var_dump($_GET['vote']);
-     $temp=[];
-     $voted=[];
-     // prendo il valore 
-      foreach($hotels as $item){
-        $park=$item['parking']? 'si':'no';
+];
 
-        if($park==$_GET['parking'] && $vote <= $_GET["vote"]){
-      $voted[]=$item;      
-    $temp[]=$item;
 
+
+if (isset($_GET['parking']) && !empty($_GET['parking'])) {
+
+
+    $temp = [];
+
+
+    foreach ($hotels as $item) {
+        $park = $item['parking'] ? 'si' : 'no';
+
+        if ($park == $_GET['parking']) {
+
+            $temp[] = $item;
         }
-     }
-     $hotels= $temp;
     }
-   
-    //dopo assegno a comics il valore di temp 
-    
-    
+    $hotels = $temp;
+}
+
+if (isset($_GET['vote']) && !empty($_GET['vote'])) {
+    $vote = $_GET['vote'];
+    $hotels = array_filter($hotels, fn ($value) => $value['vote'] >= $vote);
+}
+
 
 ?>
 
@@ -118,16 +121,16 @@ var_dump($_GET['vote']);
             </tr>
         </thead>
 
-        <?php 
-    
-foreach($hotels as $hotel){
-   
-   $park=$hotel['parking']? 'si':'no';
+        <?php
 
-    
+        foreach ($hotels as $hotel) {
 
-    
-    echo"
+            $park = $hotel['parking'] ? 'si' : 'no';
+
+
+
+
+            echo "
   
   <tbody>
     <tr>
@@ -141,10 +144,11 @@ foreach($hotels as $hotel){
 
   </tbody>
 
-    ";}
-    
+    ";
+        }
 
-?>
+
+        ?>
     </table>
 </body>
 
