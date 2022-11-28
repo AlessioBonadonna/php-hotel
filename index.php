@@ -87,50 +87,52 @@ if (isset($_GET['vote']) && !empty($_GET['vote'])) {
     <title>Hotels</title>
 </head>
 
-<body>
-
-    <form action="index.php" method="GET">
-        <!-- PRENDO IL VALORE CHE MI SERVIRA DOPO IN NAME -->
-        <h2>trova l'hotel</h2>
-        <select class=" w-75" id="type" name="parking">
-
-            <option value="" selected>Segli</option>
-            <option value="si">parking</option>
-            <option value="no">no parking</option>
-
-        </select>
-        <select name="vote" id="vote">
-            <option value="" selected>scegli </option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-        </select>
-        <button type="submit">seach</button>
-
-    </form>
-    <table class='table'>
-        <thead>
-            <tr>
-                <th scope='col'>name</th>
-                <th scope='col'>description</th>
-                <th scope='col'>parking</th>
-                <th scope='col'>vote</th>
-                <th scope='col'>distance of center</th>
-            </tr>
-        </thead>
-
-        <?php
-
-        foreach ($hotels as $hotel) {
-
-            $park = $hotel['parking'] ? 'si' : 'no';
+<body class="bg-success r">
+    <div class="container mt-5 text-white">
 
 
+        <form action="index.php" method="GET" class="text-white">
+            <!-- PRENDO IL VALORE CHE MI SERVIRA DOPO IN NAME -->
+            <h2 class="text-center">trova l'hotel</h2>
+            <select class=" w-75" id="type" name="parking">
+
+                <option value="" selected>Segli</option>
+                <option value="si">parking</option>
+                <option value="no">no parking</option>
+
+            </select>
+            <select name="vote" id="vote">
+                <option value="" selected>scegli </option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <button type="submit">seach</button>
+
+        </form>
+        <table class='table'>
+            <thead>
+                <tr>
+                    <th scope='col'>name</th>
+                    <th scope='col'>description</th>
+                    <th scope='col'>parking</th>
+                    <th scope='col'>vote</th>
+                    <th scope='col'>distance of center</th>
+                </tr>
+            </thead>
+
+            <?php
+
+            foreach ($hotels as $hotel) {
+
+                $park = $hotel['parking'] ? 'si' : 'no';
 
 
-            echo "
+
+
+                echo "
   
   <tbody>
     <tr>
@@ -145,11 +147,12 @@ if (isset($_GET['vote']) && !empty($_GET['vote'])) {
   </tbody>
 
     ";
-        }
+            }
 
 
-        ?>
-    </table>
+            ?>
+        </table>
+    </div>
 </body>
 
 </html>
