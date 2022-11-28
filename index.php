@@ -42,7 +42,25 @@
 
     ];
 
+    if(isset($_GET['parking']) && !empty($_GET['parking'])){
+        //filtrare $ comics
+   
+     //filtraggio 
+     $temp=[];
+     // prendo il valore 
+      foreach($hotels as $item){
+        $park=$item['parking']? 'si':'no';
+        if($park==$_GET['parking']){
+    $temp[]=$item;
+        }
+     }
+     $hotels= $temp;
+    }
+   
+    //dopo assegno a comics il valore di temp 
     
+    
+
 ?>
 
 
@@ -64,7 +82,33 @@
 </head>
 
 <body>
-    <?php 
+
+    <form action="index.php" method="GET">
+        <!-- PRENDO IL VALORE CHE MI SERVIRA DOPO IN NAME -->
+        <h2>parking ?</h2>
+        <select class="form-control form-control w-75" id="type" name="parking">
+
+            <option value="" selected>Segli</option>
+            <option value="si">parking</option>
+            <option value="no">no parking</option>
+
+        </select>
+        <button type="submit">ciao</button>
+
+    </form>
+    <table class='table'>
+        <thead>
+            <tr>
+                <th scope='col'>name</th>
+                <th scope='col'>description</th>
+                <th scope='col'>parking</th>
+                <th scope='col'>vote</th>
+                <th scope='col'>distance of center</th>
+            </tr>
+        </thead>
+
+        <?php 
+    
 foreach($hotels as $hotel){
    
    $park=$hotel['parking']? 'si':'no';
@@ -73,16 +117,7 @@ foreach($hotels as $hotel){
 
     
     echo"
-    <table class='table'>
-  <thead>
-    <tr>
-      <th scope='col'>name</th>
-      <th scope='col'>description</th>
-      <th scope='col'>parking</th>
-      <th scope='col'>vote</th>
-      <th scope='col'>distance of center</th>
-    </tr>
-  </thead>
+  
   <tbody>
     <tr>
     
@@ -94,11 +129,12 @@ foreach($hotels as $hotel){
     </tr>
 
   </tbody>
-</table>
+
     ";}
     
 
 ?>
+    </table>
 </body>
 
 </html>
