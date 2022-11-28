@@ -90,10 +90,10 @@ if (isset($_GET['vote']) && !empty($_GET['vote'])) {
 <body class="bg-success r">
     <div class="container mt-5 text-white">
 
-
+        <h2 class="text-center text-danger">trova l'hotel</h2>
         <form action="index.php" method="GET" class="text-white">
             <!-- PRENDO IL VALORE CHE MI SERVIRA DOPO IN NAME -->
-            <h2 class="text-center">trova l'hotel</h2>
+
             <select class=" w-75" id="type" name="parking">
 
                 <option value="" selected>Segli</option>
