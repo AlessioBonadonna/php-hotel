@@ -42,6 +42,7 @@
 
     ];
 
+    
 ?>
 
 
@@ -66,6 +67,9 @@
     <?php 
 foreach($hotels as $hotel){
    
+   $park=$hotel['parking']? 'si':'no';
+
+    
 
     
     echo"
@@ -84,7 +88,7 @@ foreach($hotels as $hotel){
     
       <td>$hotel[name]</td>
       <td>$hotel[description]</td>
-      <td>$hotel[parking]</td>
+      <td>$park</td>
       <td>$hotel[vote]</td>
       <td>$hotel[distance_to_center] km</td>
     </tr>
